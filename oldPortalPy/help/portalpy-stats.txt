@@ -1,0 +1,10 @@
+NAME
+    portalpy.stats - The portalpy statistics package for working with the ArcGIS Online API.
+
+FUNCTIONS
+    group_item_stats(portal, sample_size=100)
+        Return a tuple with group item min, mean, max, and standard deviation.
+    
+    group_member_stats(portal, sample_size=100)
+        Return a tuple with group member min, mean, max, and standard deviation.
+

@@ -1,0 +1,85 @@
+NAME
+    portalpy.provision - The portalpy provisioning package for working with the ArcGIS Online API.
+
+CLASSES
+    class CSVDeserializer(__builtin__.object)
+     |  A class for deserializing users, groups and items from CSV.
+     |  
+     |  Methods defined here:
+     |  
+     |  deserialize_groups(self, path)
+     |      Deerialize groups from CSV.
+     |  
+     |  deserialize_users(self, path)
+     |      Deserialize users from CSV.
+    
+    class CSVSerializer(__builtin__.object)
+     |  A class for serializing users, groups, and items to CSV.
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(self, data=True, metadata=True, thumbnails=True)
+     |      The CSVSerializer constructor.
+     |  
+     |  serialize_groups(self, groups, path, portal=None)
+     |      Serialize groups to CSV.
+    
+    class JSONDeserializer(__builtin__.object)
+     |  A class for deserializing users, groups, and items from JSON.
+     |  
+     |  Methods defined here:
+     |  
+     |  deserialize_groups(self, path)
+     |      Deserialize groups from JSON.
+     |  
+     |  deserialize_items(self, path)
+     |      Deserialize items from JSON.
+    
+    class JSONSerializer(__builtin__.object)
+     |  A class for serializing users, groups, and items to JSON.
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(self, data=True, metadata=True, thumbnails=True, indent=None)
+     |      The JSONSerializer constructor.
+     |  
+     |  serialize_groups(self, groups, path, portal=None)
+     |      Serialize groups to JSON.
+     |  
+     |  serialize_items(self, items, path, portal=None)
+     |      Serialize items to JSON.
+
+FUNCTIONS
+    copy_groups(groups, source, target, target_owner=None, work_dir=tempfile.gettempdir())
+        Copy group from the source portal to the target portal.
+    
+    copy_items(items, source, target, target_user, target_folder=None, relationships=None, work_dir=tempfile.gettempdir())
+        Copy items from the source portal to the target portal.
+    
+    copy_user_contents(source, source_user, target, target_user, ids=None, relationships=None, work_dir=tempfile.gettempdir())
+        Copy a user's items from the source portal to the target portal.
+    
+    load_groups(portal, path, f='json', cls=None, **kw)
+        Load groups stored on disk into the portal.
+    
+    load_items(portal, path, f='json', cls=None, **kw)
+        Load items stored on disk into the portal.
+    
+    load_users(portal, path, f='json', cls=None, **kw)
+        Load users stored on disk into the portal.
+    
+    save_groups(portal, groups, path, f='json', cls=None, **kw)
+        Save groups in the portal to disk.
+    
+    save_items(portal, items, path, f='json', cls=None, **kw)
+        Save items in the portal to disk.
+
+DATA
+    FILE_BASED_ITEM_TYPES = frozenset(['CSV', 'CityEngine Web Scene', 'Cod...
+    GROUP_COPY_PROPERTIES = ['title', 'description', 'tags', 'snippet', 'p...
+    GROUP_EXTRACT_PROPERTIES = ['id', 'title', 'description', 'tags', 'sni...
+    ITEM_COPY_PROPERTIES = ['title', 'type', 'typekeywords', 'description'...
+    TEXT_BASED_ITEM_TYPES = frozenset(['Color Set', 'Feature Collection', ...
+    clean_temp_files = True
+
+

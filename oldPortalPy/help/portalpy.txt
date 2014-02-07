@@ -1,0 +1,429 @@
+NAME
+    portalpy - The portalpy module for working with the ArcGIS Online API.
+
+PACKAGE CONTENTS
+    config
+    provision
+    stats
+
+CLASSES
+    class ArcGISConnection(__builtin__.object)
+     |  A class users to manage connection to ArcGIS services (Portal and Server).
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(self, baseurl, username=None, password=None, key_file=None, cert_file=None, expiration=60, all_ssl=False, referer=None, proxy_host=None, proxy_port=None, ensure_ascii=True)
+     |      The ArcGISConnection constructor. Requires URL and optionally username/password.
+     |  
+     |  download(self, path, filepath, ssl=False, is_retry=False)
+     |      Downloads result of an HTTP GET. Handles token timeout and all SSL mode.
+     |  
+     |  generate_token(self, username, password, expiration=60)
+     |      Generates and returns a new token, but doesn't re-login.
+     |  
+     |  get(self, path, ssl=False, compress=True, try_json=True, is_retry=False)
+     |      Returns result of an HTTP GET. Handles token timeout and all SSL mode.
+     |  
+     |  is_logged_in(self)
+     |      Returns true if logged into the portal.
+     |  
+     |  login(self, username, password, expiration=60)
+     |      Logs into the portal using username/password.
+     |  
+     |  logout(self)
+     |      Logs out of the portal.
+     |  
+     |  post(self, path, postdata=None, files=None, ssl=False, compress=True, is_retry=False)
+     |      Returns result of an HTTP POST. Supports Multipart requests.
+     |  
+     |  relogin(self, expiration=None)
+     |      Re-authenticates with the portal using the same username/password.
+    
+    class Portal(__builtin__.object)
+     |  An object representing a connection to a single portal (via URL).
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(self, url, username=None, password=None, key_file=None, cert_file=None, expiration=60, referer=None, proxy_host=None, proxy_port=None, connection=None, workdir=r'c:\users\witt3674\appdata\local\temp')
+     |      The Portal constructor. Requires URL and optionally username/password.
+     |  
+     |  accept(self, invitation_id)
+     |      Accepts an invitation to the organization.
+     |  
+     |  accept_user_invitation(self, username, invitation_id)
+     |      Accepts a specific user invitation.
+     |  
+     |  add_group_users(self, user_names, group_ids)
+     |      Adds users to groups. Supported on 2.1 or newer portals.
+     |  
+     |  add_item(self, item, data=None, thumbnail=None, metadata=None, owner=None, folder=None)
+     |      Adds an item, optionally with data, metadata, and/or thumbnail.
+     |  
+     |  add_relationship(self, owner, origin_id, dest_id, rel_type, folder=None)
+     |      Adds a relationship between two items.
+     |  
+     |  add_resource(self, key, text='', data=None)
+     |      Adds a new resource to the portal.
+     |  
+     |  basemaps(self, properties=None, q=None)
+     |      Returns portal basemaps.
+     |  
+     |  color_sets(self, properties=None, q=None)
+     |      Returns portal color sets.
+     |  
+     |  create_folder(self, owner, title)
+     |      Creates a folder for the given user with given title.
+     |  
+     |  create_group(self, group, thumbnail=None)
+     |      Creates a group, optionally with a thumbnail.
+     |  
+     |  delete_folder(self, owner, folder_id)
+     |      Deletes a specific user folder.
+     |  
+     |  delete_group(self, id)
+     |      Deletes a group.
+     |  
+     |  delete_item(self, id, owner=None)
+     |      Deletes a single item from the portal.
+     |  
+     |  delete_items(self, owner, item_ids)
+     |      Deletes items from the portal.
+     |  
+     |  delete_notification(self, username, notification_id)
+     |      Deletes a specific user notification.
+     |  
+     |  delete_relationship(self, owner, origin_id, dest_id, rel_type, folder=None)
+     |      Deletes a relationship between two items.
+     |  
+     |  delete_user(self, username, cascade=False, reassign_to=None)
+     |      Deletes a user from the portal, optionally deleting or reassigning groups and items.
+     |  
+     |  feature_collection_templates(self, properties=None, q=None)
+     |      Returns portal feature collection (layer) templates.
+     |  
+     |  featured_items(self, properties=None, q=None)
+     |      Returns portal featured items.
+     |  
+     |  featured_items_homepage(self, properties=None, q=None)
+     |      Returns portal items featured on the home page.
+     |  
+     |  folders(self, owner)
+     |      Returns the specified user's folders.
+     |  
+     |  gallery_templates(self, properties=None, q=None)
+     |      Returns portal gallery templates.
+     |  
+     |  generate_token(self, username, password, expiration=60)
+     |      Generates and returns a new token, but doesn't re-login.
+     |  
+     |  group(self, id)
+     |      Returns the group for the specified group id.
+     |  
+     |  group_members(self, id)
+     |      Returns members of the specified group.
+     |  
+     |  group_thumbnail(self, id)
+     |      Returns the group thumbnail for the specified group id.
+     |  
+     |  group_thumbnaild(self, id, dir=None, thumbnail_file=None)
+     |      Downloads the group thumbnail for the specified group id, returns file path.
+     |  
+     |  groups(self, properties=None, q=None, group_fields=None, sort_field='', sort_order='asc', num=1000, scope='default')
+     |      Searches portal groups. Supports sorting, aggregation, and auto-paging.
+     |  
+     |  info(self)
+     |      Returns a PortalInfo object describing this portal.
+     |  
+     |  invitations(self, properties=None)
+     |      Returns invitations to an online subscription.
+     |  
+     |  invite(self, invitations, email_subject, email_html)
+     |      Invites users to an an online subscription.
+     |  
+     |  invite_group_users(self, user_names, group_ids, role='group_member', expiration=10080)
+     |      Invites users to groups.
+     |  
+     |  is_all_ssl(self)
+     |      Returns true if this portal requires SSL.
+     |  
+     |  is_arcgisonline(self)
+     |      Returns true if this portal is ArcGIS Online.
+     |  
+     |  is_logged_in(self)
+     |      Returns true if logged into the portal.
+     |  
+     |  is_multitenant(self)
+     |      Returns true if this portal is multitenant.
+     |  
+     |  is_org(self)
+     |      Returns true if this portal is an organization.
+     |  
+     |  is_public(self)
+     |      Returns true if this portal allows anonymous access.
+     |  
+     |  is_subscription(self)
+     |      Returns true if this portal is an ArcGIS Online subscription.
+     |  
+     |  item(self, id)
+     |      Returns the item for the specified item id.
+     |  
+     |  item_data(self, id, return_json=False)
+     |      Returns the item data for the specified item id.
+     |  
+     |  item_datad(self, id, dir=None, filename=None)
+     |      Downloads the item data for the specified item id, returns file path.
+     |  
+     |  item_metadata(self, id)
+     |      Returns the item metadata for the specified item id.
+     |  
+     |  item_metadatad(self, id, dir=None)
+     |      Downloads the item metadata for the specified item id, returns file path.
+     |  
+     |  item_thumbnail(self, id)
+     |      Returns the item thumbnail for the specified item id.
+     |  
+     |  item_thumbnaild(self, id, dir=None, thumbnail_file=None)
+     |      Downloads the item thumbnail for the specified item id, returns file path.
+     |  
+     |  languages(self, force=False)
+     |      Returns the portal languages (using cache unless force=True).
+     |  
+     |  leave_group(self, id)
+     |      Removes the logged in user from the specified group.
+     |  
+     |  logged_in_user(self)
+     |      Returns the logging in user (JSON object).
+     |  
+     |  login(self, username, password, expiration=60)
+     |      Logs into the portal using username/password.
+     |  
+     |  logout(self)
+     |      Logs out of the portal.
+     |  
+     |  org_users(self, properties=None, group_fields=None, sort_field='', sort_order='asc', num=1000)
+     |      Returns all users within the portal organization.
+     |  
+     |  properties(self, force=False)
+     |      Returns the portal properties (using cache unless force=True).
+     |  
+     |  reassign_group(self, id, target_owner)
+     |      Reassigns a group to another owner.
+     |  
+     |  reassign_item(self, id, target_owner, target_folder=None)
+     |      Reassigns a single item within the portal.
+     |  
+     |  regions(self, force=False)
+     |      Returns the portal regions (using cache unless force=True).
+     |  
+     |  reinitialize(self)
+     |      Caches the portal version and properties.
+     |  
+     |  related_items(self, id, types=frozenset(['Map2FeatureCollection', 'Map2Service', 'MobileApp2Code', 'Service2Data', 'Service2Service', 'WMA2Code']), directions=frozenset(['forward']))
+     |      Returns items related to the specified item.
+     |  
+     |  remove_group_users(self, user_names, group_ids)
+     |      Remove users from groups. Supported on 2.1 or newer portals.
+     |  
+     |  remove_resource(self, key)
+     |      Removes the resource for a given key.
+     |  
+     |  reset_user(self, username, password, new_password=None, new_security_question=None, new_security_answer=None)
+     |      Resets a user's password, security question, and/or security answer.
+     |  
+     |  resource(self, key)
+     |      Returns the resource for a given key.
+     |  
+     |  resourced(self, key, filename=None, dir=None)
+     |      Downloads the resource for a given key.
+     |  
+     |  resources(self, force=False)
+     |      Returns the portal resources (using cache unless force=True).
+     |  
+     |  search(self, properties=None, q=None, bbox=None, group_fields=None, sort_field='', sort_order='asc', num=1000, scope='default')
+     |      Searches portal items. Supports sorting, aggregation, and auto-paging.
+     |  
+     |  set_properties(self, properties, clear_empty_fields=False)
+     |      Sets the portal properties.
+     |  
+     |  share_item(self, item_id, group_ids, org=False, everyone=False)
+     |      Shares an single item within the portal with groups, the org, and/or everyone.
+     |  
+     |  share_items(self, owner, item_ids, group_ids=None, org=False, everyone=False)
+     |      Shares items with groups, the org, and/or everyone.
+     |  
+     |  signup(self, username, password, fullname, email)
+     |      Signs up users to an instance of Portal for ArcGIS.
+     |  
+     |  symbol_sets(self, properties=None, q=None)
+     |      Returns portal symbol sets.
+     |  
+     |  unshare_item(self, item_id, group_ids)
+     |      Unshares a single item within the portal .
+     |  
+     |  unshare_items(self, owner, item_ids, group_ids)
+     |      Unshares items with groups.
+     |  
+     |  update_group(self, id, properties=None, thumbnail=None)
+     |      Updates a group's properties.
+     |  
+     |  update_item(self, id, item=None, data=None, metadata=None, thumbnail=None)
+     |      Updates an item's properties, data, metadata, and/or thumbnail.
+     |  
+     |  update_properties(self, props)
+     |      Updates multiple portal properties.
+     |  
+     |  update_property(self, name, value)
+     |      Updates a single portal property.
+     |  
+     |  update_user(self, username, properties)
+     |      Updates a user's properties.
+     |  
+     |  update_user_role(self, username, role)
+     |      Updates a user's role.
+     |  
+     |  update_webmap(self, webmap)
+     |      Updates the specific webmap in the portal.
+     |  
+     |  user(self, username)
+     |      Returns the user for the specified username.
+     |  
+     |  user_contents(self, username)
+     |      Returns a tuple of root items and a dictionary of folder items.
+     |  
+     |  user_invitations(self, username)
+     |      Returns all of a user's invitations.
+     |  
+     |  user_item(self, id, owner=None, folder_id=None)
+     |      Returns a tuple of the item properties, item sharing, and folder id.
+     |  
+     |  user_item_link(self, id, owner=None, folder_id=None, path_only=False)
+     |      Returns the user link to an item (includes folder if appropriate).
+     |  
+     |  user_notifications(self, username)
+     |      Returns all of a user's notifications.
+     |  
+     |  users(self, properties=None, q=None, group_fields=None, sort_field='', sort_order='asc', num=1000, scope='default')
+     |      Searches portal users. Supports sorting, aggregation, and auto-paging.
+     |  
+     |  version(self, force=False)
+     |      Returns the portal version (using cache unless force=True).
+     |  
+     |  webmap(self, id)
+     |      Returns a WebMap object for the specified item id
+     |  
+     |  webmap_templates(self, properties=None, q=None)
+     |      Returns portal web (mapping) application templates.
+     |  
+     |  webmaps(self, q=None, bbox=None, sort_field='', sort_order='asc', num=1000, scope='default', include_basemaps=False, ignore_errors=True)
+     |      Search portal items for webmaps, returning WebMap objects
+     |  
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |  
+     |  aggregate_functions = {'avg': <function <lambda>>, 'count': <function ...
+    
+    class PortalError(exceptions.Exception)
+     |  The PortalError object, which is raised for standard portal errors.
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(self, value)
+     |      The PortalError constructor.
+    
+    class PortalInfo(__builtin__.object)
+     |  An object describing the portal. Supports printable string representation.
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(self, hostname, url, properties, version, loggedinuser, loggedinrole)
+     |      The PortalInfo constructor.
+     |  
+     |  __str__(self)
+    
+    class WebMap(__builtin__.object)
+     |  A Web Map object with utility functions based on Web Map JSON.
+     |  
+     |  Methods defined here:
+     |  
+     |  __init__(self, id, data, ensure_ascii=True)
+     |      The WebMap constructor. Takes a Web Map item's id and data as input.
+     |  
+     |  basemap(self)
+     |      Returns the Web Map's basemap.
+     |  
+     |  bookmarks(self)
+     |      Returns all bookmarks referenced in the Web Map.
+     |  
+     |  feature_collections(self, schemas=None, return_empty=False)
+     |      Returns the feature collections present in the Web Map.
+     |  
+     |  feature_sets(self, schemas=None, return_empty=False)
+     |      Returns the feature sets present in the Web Map.
+     |  
+     |  features(self, schemas=None)
+     |      Returns all features in the Web Map for a given geomerty type.
+     |  
+     |  gadgets(self)
+     |      Returns the gadgets referenced in the Web Map.
+     |  
+     |  info(self)
+     |      Returns information about the Web Map in a dictionary form.
+     |  
+     |  item_ids(self)
+     |      Returns the item ids referenced in the Web Map.
+     |  
+     |  json(self)
+     |      Returns the Web Map definition as JSON.
+     |  
+     |  layers(self)
+     |      Returns all layers in the Web Map (including basemap and operational).
+     |  
+     |  operational_layers(self)
+     |      Returns the Web Map's operational layers.
+     |  
+     |  presentation(self)
+     |      Returns the referenced in the Web Map (if one exists).
+     |  
+     |  query_tasks(self)
+     |      Returns all query tasks referenced in the Web Map.
+     |  
+     |  time_slider(self)
+     |      Returns the time slider referenced in the Web Map (if one exists).
+     |  
+     |  urls(self, layers=True, basemap=False, normalize=False)
+     |      Returns the URLs referenced in the Web Map.
+     |  
+     |  version(self)
+     |      Returns the Web Map's version.
+
+FUNCTIONS
+    normalize_url(url, charset='utf-8')
+        Normalizes a URL. Based on http://code.google.com/p/url-normalize.
+    
+    parse_hostname(url, include_port=False)
+        Parses the hostname out of a URL.
+    
+    portal_time(dt)
+        Turns a UTC datetime object into portal's date/time string format.
+    
+    unicode_to_ascii(data)
+        Converts strings and collections of strings from unicode to ascii.
+    
+    unpack(obj_or_seq, key=None, flatten=False)
+        Turns a list of single item dicts in a list of the dict's values.
+
+DATA
+    EXCLUDE_BASEMAP_FILTER = ' -tags:basemap'
+    FILE_BASED_ITEM_TYPES = frozenset(['CSV', 'CityEngine Web Scene', 'Cod...
+    RELATIONSHIP_DIRECTIONS = frozenset(['forward', 'reverse'])
+    RELATIONSHIP_TYPES = frozenset(['Map2FeatureCollection', 'Map2Service'...
+    TEXT_BASED_ITEM_TYPES = frozenset(['Color Set', 'Feature Collection', ...
+    URL_BASED_ITEM_TYPES = frozenset(['Feature Service', 'Geocoding Servic...
+    URL_ITEM_FILTER = 'type:"Image Service" OR type:"Geocoding Service"......
+    WEBMAP_ITEM_FILTER = 'type:"Web Map" -type:"Web Mapping Application"'
+    WEB_ITEM_FILTER = '((type:"service" -type:"globe" -type:"geodata") ......
+
+VERSION
+    1.0a8
+
+

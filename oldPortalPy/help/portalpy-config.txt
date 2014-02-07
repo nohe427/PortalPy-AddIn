@@ -1,0 +1,29 @@
+NAME
+    portalpy.config - The portalpy configuration package for working with the ArcGIS Online API.
+
+FUNCTIONS
+    clear_featured_groups(portal)
+        Clear all featured groups in the portal.
+    
+    clear_featured_items(portal, gallery=True, home_page=True)
+        Clear all featured items in the portal (gallery and/or home page.
+    
+    configure_portal(portal, name=None, desc=None)
+        Configure the portal with some basic properties.
+    
+    create_basemap_gallery_group(portal, title, desc=None, snippet=None, tags='Basemap', phone=None, access='org', invitation_only=True, thumbnail=None, copy=True, copy_filter=None)
+        Create, configure, and optionally popupate a basemap group for the portal.
+    
+    feature_groups(portal, group_ids, clear_existing=False)
+        Feature specific groups in the portal.
+    
+    feature_groups_query(portal, q, clear_existing=False)
+        Feature groups in the portal that are returned from the specified query.
+    
+    feature_items(portal, item_ids, gallery=True, home_page=True, clear_existing=False)
+        Feature specific items in the portal (gallery and/or home page).
+    
+    feature_items_query(portal, q, gallery=True, home_page=True, clear_existing=False)
+        Feature items in the portal (gallery and/or home page) that are returned from the specified query.
+
+

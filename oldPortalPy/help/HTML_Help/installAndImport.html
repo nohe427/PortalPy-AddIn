@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>portalpy Help</title>
+</head>
+
+<body>
+<h1>Portal Py Help</h1>
+<p>&nbsp;</p>
+<h2>How to install and import Portal Py:</h2>
+<ol>
+  <li> Download the ZIP and extract to a directory on your computer.
+  <li>In the portal-py-python folder, move the portalpy folder to a location that is easy to access and will not change.
+  <li>When writing your python script, enter in the following to access portalpy as a module:
+    <pre><samp>
+<kbd>&gt;&gt;&gt; import sys
+&gt;&gt;&gt; sys.path.append(r&quot;&lt;LOCATION_OF_portalpy_DIRECTORY&gt;&quot;)
+&gt;&gt;&gt; import portalpy</kbd></samp></pre>
+  <li>Then you should be able to use all of the classes contained within portalpy.
+</ol>
+<h2>How to use the Portal class:</h2>
+<p> class Portal(__builtin__.object)<br>
+  </p>
+<p>An object representing a connection to a single portal (via URL).<br>
+  <br>
+  __init__(self, url, username=None, password=None, key_file=None, cert_file=None, expiration=60, referer=None, proxy_host=None, proxy_port=None, connection=None, workdir=r'c:\users\witt3674\appdata\local\temp')<br>
+  The Portal constructor. Requires URL and optionally username/password.</p>
+<h3>Syntax</h3>
+<p><kbd>thePortal = portalpy.Portal(URL=&quot;sampleURL.maps.arcgis.com&quot;, &quot;Username&quot;, &quot;Password&quot;, &quot;key_file&quot;, &quot;cert_file&quot;, &quot;expiration_in_minutes&quot;, &quot;referer&quot;, &quot;proxy_host&quot;, &quot;proxy_port&quot;, &quot;connection&quot;, r&quot;workDirectory&quot;)</kbd></p>
+<table width="795" height="520" border="1" summary="This contains all of the explanations for the parameters entered.">
+  <caption>
+    portalpy.Portal Syntax Explanation
+  </caption>
+  <tr>
+    <td>Parameter</td>
+    <td>Explanation</td>
+    <td>Data Type</td>
+  </tr>
+  <tr>
+    <td>URL</td>
+    <td>The URL that you connect to ArcGIS Online with. e.g. http://sample.maps.arcgis.com</td>
+    <td>String</td>
+  </tr>
+  <tr>
+    <td>Username</td>
+    <td>The username that you use to log into your orgnaizational account</td>
+    <td>String</td>
+  </tr>
+  <tr>
+    <td>Password</td>
+    <td>The password that you use to log into your organizational account with the provided username</td>
+    <td>String</td>
+  </tr>
+  <tr>
+    <td>key_file</td>
+    <td>NO IDEA</td>
+    <td>?</td>
+  </tr>
+  <tr>
+    <td>cert_file</td>
+    <td>?</td>
+    <td>?</td>
+  </tr>
+  <tr>
+    <td>expiration</td>
+    <td>The amount of time you want to be logged into the organization through this portal before it expires. Default is sixty.</td>
+    <td>Interger</td>
+  </tr>
+  <tr>
+    <td>Referer</td>
+    <td>?</td>
+    <td>?</td>
+  </tr>
+  <tr>
+    <td>proxy_host</td>
+    <td>The proxy that you pass the credentials through.</td>
+    <td>URL/String</td>
+  </tr>
+  <tr>
+    <td>proxy_port</td>
+    <td>Port Number that the proxy listens to.</td>
+    <td>Interger</td>
+  </tr>
+  <tr>
+    <td>connection</td>
+    <td>?</td>
+    <td>?</td>
+  </tr>
+  <tr>
+    <td>workdir</td>
+    <td>?</td>
+    <td>?</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>
