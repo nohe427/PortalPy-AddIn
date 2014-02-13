@@ -1,0 +1,12 @@
+<ESRI.Configuration xmlns="http://schemas.esri.com/Desktop/AddIns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><Name>Python Addin</Name><AddInID>{5cc5037b-8f13-4fb1-ba02-841ec4d842dd}</AddInID><Description>New Addin</Description><Version>0.1</Version><Image>Images\portalPyAddIn.PNG</Image><Author>Untitled</Author><Company>Untitled</Company><Date>02/13/2014</Date><Targets><Target name="Desktop" version="10.2" /></Targets><AddIn language="PYTHON" library="TestFailure_addin.py" namespace="TestFailure_addin"><ArcMap>
+    <Commands>
+        <Button caption="Button" category="Python Addin" class="ButtonClass1" id="TestFailure_addin.button" image="Images\portalPyAddIn.PNG" message="Button" tip="Button"><Help heading="Button">Button</Help></Button>
+        </Commands>
+    <Extensions>
+        </Extensions>
+    <Toolbars>
+        <Toolbar caption="Toolbar" category="Python Addin" id="TestFailure_addin.toolbar" showInitially="true"><Items><Button refID="TestFailure_addin.button" /></Items></Toolbar>
+        </Toolbars>
+    <Menus>
+        </Menus>
+    </ArcMap></AddIn></ESRI.Configuration>
