@@ -4,7 +4,7 @@ import sys
 sys.path.append(r"portalpy") #This will allow this module to be read straight from the Install module
 import portalpy
 
-class listFolders2(object):
+class ToolClass4(object):
     """Implementation for portalpy-addin_addin.tool (Tool)"""
     def __init__(self):
         self.enabled = True
@@ -34,12 +34,4 @@ class listFolders2(object):
     def onLine(self, line_geometry):
         pass
     def onRectangle(self, rectangle_geometry):
-        pass
-
-class listFoldersExt(object):
-    """Implementation for portalpy-addin_addin.extension10 (Extension)"""
-    def __init__(self):
-        # For performance considerations, please remove all unused methods in this class.
-        self.enabled = True
-    def onStartOperation(self):
         pass
