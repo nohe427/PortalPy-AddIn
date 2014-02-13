@@ -19,14 +19,12 @@ def main():
     URL = arcpy.GetParameterAsText(0)
     user = arcpy.GetParameterAsText(1)
     password = arcpy.GetParameterAsText(2)
-
     # Instantiate the portal object
     try:
         portalObject = portalpy.Portal(URL, user, password)
     except:
         print "Login is not valid"
-
     if portalObject.is_logged_in == "True":
-        return "Successful login"
+        print "Successful login"
     else:
-        return "No Sucecss"
+        print "No Sucecss"
