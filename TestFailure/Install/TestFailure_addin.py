@@ -1,7 +1,7 @@
 import arcpy
 import pythonaddins
 import sys
-sys.path.append(".\portalpy")
+sys.path.append(".\Tools\Tools")
 import portalpy
 
 class ButtonClass1(object):
