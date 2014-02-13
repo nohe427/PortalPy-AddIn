@@ -1,8 +1,5 @@
 import arcpy
 import pythonaddins
-import sys
-sys.path.append(r"portalpy") #This will allow this module to be read straight from the Install module
-import portalpy
 
 class ToolClass4(object):
     """Implementation for portalpy-addin_addin.tool (Tool)"""
