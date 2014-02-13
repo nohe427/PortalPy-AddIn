@@ -15,4 +15,5 @@ class ButtonClass1(object):
         #value = pythonaddins.OpenDialog('Credentials', True, r'C:\'', 'Add')
         #I am thinking of just creating tools to do all of this then prompting
         #the button with: pythonaddins.GPToolDialog(toolbox, tool_name)
-        print x.folders("anohe_ess5")
+        for i in x.folders("anohe_ess5"):
+            print i['title']
