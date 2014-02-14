@@ -14,8 +14,8 @@ class SignOn(object):
     def onClick(self):
         global portalLogin
         portalLogin = pythonaddins.GPToolDialog(r"C:\Users\AlexanderN\Documents\GitHub\PortalPy-AddIn\102version\test\Install\Tools\Toolbox.tbx", "SignOn")
-        validation()
-        validation.enabled = True
+        #validation()
+        #validation.enabled = True
         #This is used to select datasets which is a possibility
         #value = pythonaddins.OpenDialog('Credentials', True, r'C:\'', 'Add')
         #I am thinking of just creating tools to do all of this then prompting
@@ -24,7 +24,7 @@ class SignOn(object):
 class validation(object):
     """Implementation for test_addin.button (Button)"""
     def __init__(self):
-        self.enabled = False
+        self.enabled = True
         self.checked = False
     def onClick(self):
         print portalLogin

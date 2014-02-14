@@ -11,7 +11,7 @@
 
 import sys
 import arcpy
-sys.path.append(r".\Tools")
+sys.path.append(r"C:\python27\Lib\site-packages")
 import portalpy
 
 def main():
