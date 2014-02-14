@@ -22,3 +22,6 @@ class ButtonClass1(object):
             print "True"
         else:
             print "False"
+
+"""
+"""
