@@ -13,7 +13,6 @@ import sys
 import arcpy
 sys.path.append(r"C:\Python27\Lib\site-packages")
 import portalpy
-import __builtin__
 
 def main():
     # Get the parameters for the tool

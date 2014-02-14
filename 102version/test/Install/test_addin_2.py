@@ -22,7 +22,7 @@ class SignOn(object):
         """
         pythonaddins.GPToolDialog(r"C:\Users\AlexanderN\Documents\GitHub\PortalPy-AddIn\102version\test\Install\Tools\Toolbox.tbx", "SignOn")
 
-class folderList(object):
+class validation(object):
     """Implementation for test_addin.button (Button)"""
     def __init__(self):
         self.enabled = True
@@ -32,11 +32,3 @@ class folderList(object):
         print "These are the folders you have currently on this Portal username:"
         for i in portalLogin.folders(portalID):
             print i['title']
-
-class newFolder(object):
-    """Implementation for test_addin.button_1 (Button)"""
-    def __init__(self):
-        self.enabled = True
-        self.checked = False
-    def onClick(self):
-        pythonaddins.GPToolDialog(r"C:\Users\AlexanderN\Documents\GitHub\PortalPy-AddIn\102version\test\Install\Tools\Toolbox.tbx", "createFolderCU")
