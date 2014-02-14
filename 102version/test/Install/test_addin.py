@@ -14,15 +14,12 @@ class SignOn(object):
         self.checked = False
     def onClick(self):
         global portalLogin
-        #Modify this to return a value (listed below)
-        #URL = input("what is the portal url?")
+        """  While the GPToolDialog runs asynchronously from the tool, it does have the option
+            to import the global variable and then  reassign the variable to the
+            portal object.  This allows our users to access the portal object in
+            other classes that we create from this.
+        """
         portalLogin = pythonaddins.GPToolDialog(r"C:\Users\AlexanderN\Documents\GitHub\PortalPy-AddIn\102version\test\Install\Tools\Toolbox.tbx", "SignOn")
-        #validation()
-        #validation.enabled = True
-        #This is used to select datasets which is a possibility
-        #value = pythonaddins.OpenDialog('Credentials', True, r'C:\'', 'Add')
-        #I am thinking of just creating tools to do all of this then prompting
-        #the button with: pythonaddins.GPToolDialog(toolbox, tool_name)
 
 class validation(object):
     """Implementation for test_addin.button (Button)"""
