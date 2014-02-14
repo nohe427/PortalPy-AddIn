@@ -5,7 +5,7 @@ sys.path.append(r"C:\Python27\Lib\site-packages")
 from portalpy import *
 
 global portalLogin
-
+#Get bad syntac error when declaring global portalLogin = () or portalLogin = portalpy.Portal()
 class SignOn(object):
     """Implementation for test_addin.signonbutton (Button)"""
     def __init__(self):
