@@ -28,4 +28,5 @@ class validation(object):
         self.enabled = True
         self.checked = False
     def onClick(self):
+        global portalLogin
         print portalLogin
