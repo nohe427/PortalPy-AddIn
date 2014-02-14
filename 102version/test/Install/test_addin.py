@@ -28,4 +28,6 @@ class validation(object):
         self.checked = False
     def onClick(self):
         global portalLogin
-        print portalLogin
+        print "These are the folders you have currently on this Portal:"
+        for i in portalLogin.folders("anohe_ess5"):
+            print i['title']
