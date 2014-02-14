@@ -11,18 +11,14 @@
 
 import sys
 import arcpy
-sys.path.append(r"C:\python27\Lib\site-packages")
+sys.path.append(r"C:\Python27\Lib\site-packages")
 import portalpy
 
 def main():
     # Get the parameters for the tool
-    URL = arcpy.GetParameterAsText(0)
-    user = arcpy.GetParameterAsText(1)
-    password = arcpy.GetParameterAsText(2)
+    URL = str(arcpy.GetParameterAsText(0))
+    user = str(arcpy.GetParameterAsText(1))
+    password = str(arcpy.GetParameterAsText(2))
     # Instantiate the portal object
-    try:
-        portalObject = portalpy.Portal(URL, user, password)
-	return portalObject
-    except:
-	portalObject = None
-	return portalObject
+    portalObject = portalpy.Portal(URL, user, password)
+    return portalObject
