@@ -1,13 +1,14 @@
-<ESRI.Configuration xmlns="http://schemas.esri.com/Desktop/AddIns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><Name>PortalTools</Name><AddInID>{46482381-3303-4355-8a3b-96c60b883983}</AddInID><Description>Portal tools</Description><Version>0.2</Version><Image>Images\portalPyAddIn.PNG</Image><Author>Alexander Nohe</Author><Company>ESRI</Company><Date>02/14/2014</Date><Targets><Target name="Desktop" version="10.2" /></Targets><AddIn language="PYTHON" library="test_addin.py" namespace="test_addin"><ArcMap>
+<ESRI.Configuration xmlns="http://schemas.esri.com/Desktop/AddIns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><Name>PortalTools</Name><AddInID>{46482381-3303-4355-8a3b-96c60b883983}</AddInID><Description>Portal tools</Description><Version>0.4</Version><Image>Images\portalPyAddIn.PNG</Image><Author>Alexander Nohe</Author><Company>ESRI</Company><Date>02/14/2014</Date><Targets><Target name="Desktop" version="10.2" /></Targets><AddIn language="PYTHON" library="test_addin.py" namespace="test_addin"><ArcMap>
     <Commands>
         <Button caption="Sign on" category="PortalTools" class="SignOn" id="test_addin.signonbutton" image="Images\portalPyAddIn.PNG" message="This tool allows you to log into portal" tip="Portal Sign In"><Help heading="Sign In Help">Press Buttons</Help></Button>
         <Button caption="List Folders" category="PortalTools" class="folderList" id="test_addin.button" image="Images\open.PNG" message="List Folders" tip="List Folders"><Help heading="List Folders">List Folders</Help></Button>
         <Button caption="Create Folder" category="PortalTools" class="newFolder" id="test_addin.button_1" image="Images\createFolder.PNG" message="New Folder" tip="New Folder"><Help heading="New Folder">New Folder</Help></Button>
+        <Button caption="List Users" category="PortalTools" class="portalpyUsers" id="test_addin.button_2" image="Images\viewUsers.PNG" message="List Users" tip="List Users"><Help heading="List Users">List Users</Help></Button>
         </Commands>
     <Extensions>
         </Extensions>
     <Toolbars>
-        <Toolbar caption="Portal Tools" category="PortalTools" id="test_addin.portaltoolbar" showInitially="true"><Items><Button refID="test_addin.signonbutton" /><Button refID="test_addin.button" /><Button refID="test_addin.button_1" /></Items></Toolbar>
+        <Toolbar caption="Portal Tools" category="PortalTools" id="test_addin.portaltoolbar" showInitially="true"><Items><Button refID="test_addin.signonbutton" /><Button refID="test_addin.button" /><Button refID="test_addin.button_1" /><Button refID="test_addin.button_2" /></Items></Toolbar>
         </Toolbars>
     <Menus>
         </Menus>
