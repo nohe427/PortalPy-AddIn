@@ -13,6 +13,7 @@ import sys
 import arcpy
 sys.path.append(r"C:\Python27\Lib\site-packages")
 import portalpy
+import __builtin__
 
 def main():
     # Get the parameters for the tool
@@ -22,6 +23,8 @@ def main():
     # Instantiate the portal object
     portalObject = portalpy.Portal(URL, user, password)
     #print portalObject
-    return portalObject
+    import test_addin
+    test_addin.portalLogin = portalObject
+    
 
 main()

@@ -15,6 +15,7 @@ class SignOn(object):
     def onClick(self):
         global portalLogin
         #Modify this to return a value (listed below)
+        #URL = input("what is the portal url?")
         portalLogin = pythonaddins.GPToolDialog(r"C:\Users\AlexanderN\Documents\GitHub\PortalPy-AddIn\102version\test\Install\Tools\Toolbox.tbx", "SignOn")
         #validation()
         #validation.enabled = True
