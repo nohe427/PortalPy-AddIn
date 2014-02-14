@@ -18,11 +18,3 @@ class SignOn(object):
         #value = pythonaddins.OpenDialog('Credentials', True, r'C:\'', 'Add')
         #I am thinking of just creating tools to do all of this then prompting
         #the button with: pythonaddins.GPToolDialog(toolbox, tool_name)
-
-class validation(object):
-    """Implementation for test_addin.button (Button)"""
-    def __init__(self):
-        self.enabled = True
-        self.checked = False
-    def onClick(self):
-        print portalLogin
