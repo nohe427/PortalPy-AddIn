@@ -25,6 +25,7 @@ def main():
     #print portalObject
     import test_addin
     test_addin.portalLogin = portalObject
+    test_addin.portalID = user
     
 
 main()
