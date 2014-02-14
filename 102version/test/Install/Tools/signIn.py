@@ -22,10 +22,7 @@ def main():
     # Instantiate the portal object
     try:
         portalObject = portalpy.Portal(URL, user, password)
-    except:
-        portalObject = "False"
 	return portalObject
-    if portalObject.is_logged_in == "True":
-        return "True"
-    else:
-        return "False"
+    except:
+	portalObject = None
+	return portalObject
