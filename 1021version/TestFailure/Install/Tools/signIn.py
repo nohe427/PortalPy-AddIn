@@ -16,9 +16,9 @@ import portalpy
 
 def main():
     # Get the parameters for the tool
-    URL = arcpy.GetParameterAsText(0)
-    user = arcpy.GetParameterAsText(1)
-    password = arcpy.GetParameterAsText(2)
+    URL = r"http://www.arcgis.com/"
+    user = arcpy.GetParameterAsText(0)
+    password = arcpy.GetParameterAsText(1)
     # Instantiate the portal object
     try:
         portalObject = portalpy.Portal(URL, user, password)
