@@ -1,24 +1,16 @@
-import arcpy, pythonaddins, sys
-
-#2/16 Ash: Used to get python to read the contents of a url.
-#          Temporary, cannot figure out how to get portalpy to do the same.
-import shutil, os, time, datetime, math, urllib
+import arcpy, pythonaddins, sys, os, urllib
 from array import array
 
-#sys.path.append(".\Tools\Tools")
-#2/15 Ash: Above searches for Tools\Tools in C:\Windows\System32 on Win8.
-
-#Used to get SignOn working on Ash's machine:
 tbxpath = r"C:\Users\Ashley\Documents\GitHub\PortalPy-AddIn\1021version\TestFailure\Install\Tools"
 sys.path.append(tbxpath + "\\Tools")
 
-list_services_org = []
-list_services_path1 = r"http://services.arcgis.com"
-ESS_org_ID = "//Wl7Y1m92PbjtJs5n//"    #How to get this in portalpy?
-list_services_path2 = r"ArcGIS/rest/services"
+list_services_path1 = r"http://services.arcgis.com/"
+list_services_path2 = r"/ArcGIS/rest/services?f=pjson"
+
+#2/18 Ash: Accessing rest URL will only print public services. I suppose that is all the rage with tokens.
+#          Need to get a list of item ids.
 
 output = r"C:\Users\Ashley\Documents\GitHub\PortalPy-AddIn\1021version\TestFailure\Install\Output\output.txt"
-#output = r".\Output\output.txt"
 
 import portalpy
 
@@ -32,30 +24,24 @@ class SignIn(object):
         self.checked = False
 
     def onClick(self):
-        
-        portalLogin = pythonaddins.GPToolDialog(tbxpath + "\\Toolbox.tbx", "SignIn")
 
-        #2/16 Ash: List of services for the organization:
-        #          http://services.arcgis.com/Wl7Y1m92PbjtJs5n/ArcGIS/rest/services
-        #          Is it possible to extract organization ID from portalpy?
+        #pythonaddins.GPToolDialog(tbxpath + "\\Toolbox.tbx", "SignIn")
 
-        filehandle = urllib.urlopen(list_services_path1 + ESS_org_ID + list_services_path2)
-        for lines in filehandle.readlines(): list_services_org.append(lines)
+        URL = r"http://www.arcgis.com/"
+        user = 'eek'
+        password = 'eek'
+
+        portalLogin = portalpy.Portal(URL, user, password)
+        org_ID = portalLogin.info().properties['id']
 
         FILE = open(output, "w")
-        for i in list_services_org: FILE.write(i)
-        FILE.close()
-
-        print "Check your output folder for a list of services in your organization."
-            
-        #This is used to select datasets which is a possibility
-        #value = pythonaddins.OpenDialog('Credentials', True, r'C:\'', 'Add')
-        #I am thinking of just creating tools to do all of this then prompting
-        #the button with: pythonaddins.GPToolDialog(toolbox, tool_name)
         
-        if portalLogin == "True":
-            #ButtonClass2.enabled = True
-            print "True"
-        else:
-            print "False"
+        filehandle = urllib.urlopen(list_services_path1 + org_ID + list_services_path2)
+        for lines in filehandle.readlines():
+            #[16:-5]      "name" : "      
+            if '"name"' in lines:
+                FILE.write(lines[16:-5])
+                FILE.write('\n')
 
+        FILE.close()
+        print 'Woot.'
