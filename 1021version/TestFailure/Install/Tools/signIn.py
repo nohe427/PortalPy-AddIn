@@ -15,6 +15,8 @@ sys.path.append(r".\Tools")
 import portalpy
 
 def main():
+
+    
     # Get the parameters for the tool
     URL = r"http://www.arcgis.com/"
     user = arcpy.GetParameterAsText(0)
@@ -22,10 +24,11 @@ def main():
     # Instantiate the portal object
     try:
         portalObject = portalpy.Portal(URL, user, password)
+        return portalObject
     except:
         portalObject = "False"
-	return portalObject
     if portalObject.is_logged_in == "True":
         return "True"
     else:
         return "False"
+
