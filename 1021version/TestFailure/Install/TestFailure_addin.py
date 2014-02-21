@@ -1,20 +1,12 @@
-import arcpy, pythonaddins, sys, os, urllib
+import arcpy, pythonaddins, sys
 from array import array
 
 tbxpath = r"C:\Users\Ashley\Documents\GitHub\PortalPy-AddIn\1021version\TestFailure\Install\Tools"
-sys.path.append(tbxpath + "\\Tools")
-
-list_services_path1 = r"http://services.arcgis.com/"
-list_services_path2 = r"/ArcGIS/rest/services?f=pjson"
-
-#2/18 Ash: Accessing rest URL will only print public services. I suppose that is all the rage with tokens.
-#          Need to get a list of item ids.
-
 output = r"C:\Users\Ashley\Documents\GitHub\PortalPy-AddIn\1021version\TestFailure\Install\Output\output.txt"
 
-import portalpy
+sys.path.append(tbxpath + "\\Tools")
 
-global portalLogin
+import portalpy
 
 class SignIn(object):
     """Implementation for TestFailure_addin.button (Button)"""
@@ -25,23 +17,18 @@ class SignIn(object):
 
     def onClick(self):
 
-        #pythonaddins.GPToolDialog(tbxpath + "\\Toolbox.tbx", "SignIn")
-
         URL = r"http://www.arcgis.com/"
-        user = 'eek'
-        password = 'eek'
+        user = 'ack'
+        password = 'ack'
 
         portalLogin = portalpy.Portal(URL, user, password)
-        org_ID = portalLogin.info().properties['id']
+
+        fs = portalLogin.search(q='type:Feature Service',
+                                sort_field = 'title', sort_order = 'asc')
 
         FILE = open(output, "w")
         
-        filehandle = urllib.urlopen(list_services_path1 + org_ID + list_services_path2)
-        for lines in filehandle.readlines():
-            #[16:-5]      "name" : "      
-            if '"name"' in lines:
-                FILE.write(lines[16:-5])
-                FILE.write('\n')
-
+        for i in fs: FILE.write(i.get('title') + "\n")
+            
         FILE.close()
         print 'Woot.'

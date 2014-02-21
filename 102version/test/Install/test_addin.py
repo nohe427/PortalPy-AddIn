@@ -1,10 +1,7 @@
-import arcpy, pythonaddins
-import sys, os, urllib
-from array import array
+import arcpy, pythonaddins, sys, os
 sys.path.append(r"C:\Python27\Lib\site-packages")
 from portalpy import *
 
-#Ash 2/17: Output location for Nohe
 output = r"C:\Users\AlexanderN\Documents\GitHub\PortalPy-AddIn\102version\test\Install\Output\output.txt"
 
 global portalLogin
@@ -25,19 +22,13 @@ class SignOn(object):
         """
         pythonaddins.GPToolDialog(r"C:\Users\AlexanderN\Documents\GitHub\PortalPy-AddIn\102version\test\Install\Tools\Toolbox.tbx", "SignOn")
 
-        #Ash 2/18: Assuming portalLogin is a portal object...
-        host = r"http://services.arcgis.com"
-        rest = r"ArcGIS/rest/services?f=pjson"
-        org_ID = portalLogin.info().properties['id']
+        fs = portalLogin.search(q='type:Feature Service',
+                                sort_field = 'title', sort_order = 'asc')
 
-        #Ash 2/17: Creates output.txt that contains names of all public services in the organization.
+        #Ash 2/17: Creates output.txt that contains names of all services in the organization.
+
         FILE = open(output, "w")
-        filehandle = urllib.urlopen(host + org_ID + rest)
-        for lines in filehandle.readlines():
-            #[16:-5]      "name" : "      
-            if '"name"' in lines:
-                FILE.write(lines[16:-5])
-                FILE.write('\n')
+        for i in fs: FILE.write(i.get('title') + "\n")
         FILE.close()
         
         print "Check test\\Install\\Output" 
