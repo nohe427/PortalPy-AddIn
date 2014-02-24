@@ -19,7 +19,7 @@ def main():
     username = arcpy.GetParameterAsText(0)
     reassign_to = arcpy.GetParameterAsText(1)
     portalLogin = test_addin.portalLogin
-    portalLogin.delete_user(username, cascade = False, reassign_to)
+    portalLogin.delete_user(username, cascade = False)
     print "Deleted user: " + username + " and reassigned their content to: " + reassign_to    
 
 main()
