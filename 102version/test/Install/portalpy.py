@@ -1,14 +1,14 @@
-import arcpy
-import pythonaddins
-import sys, os
-workDir = os.path.dirname(sys.argv[0])
-portalpyScriptPath = workDir + "\\Tools\\Tools\\portalpy.py"
-sys.path.append(portalpyScriptPath)
+import arcpy, pythonaddins, sys, os
+sys.path.append(os.path.dirname(__file__) + "\\Tools\\Tools")
 from portalpy import *
+
+output = r"C:\Users\AlexanderN\Documents\GitHub\PortalPy-AddIn\102version\test\Install\Output\output.txt"
 
 global portalLogin
 global portalID
 #Get bad syntac error when declaring global portalLogin = () or portalLogin = portalpy.Portal()
+
+TBXPATH = os.path.dirname(__file__) + "\\Tools\\Toolbox.tbx"
 
 class SignOn(object):
     """Implementation for test_addin.signonbutton (Button)"""
@@ -16,13 +16,25 @@ class SignOn(object):
         self.enabled = True
         self.checked = False
     def onClick(self):
+        print "CLICK"
         global portalLogin
         """  While the GPToolDialog runs asynchronously from the tool, it does have the option
             to import the global variable and then  reassign the variable to the
             portal object.  This allows our users to access the portal object in
             other classes that we create from this.
         """
-        pythonaddins.GPToolDialog(r"C:\Users\AlexanderN\Documents\GitHub\PortalPy-AddIn\102version\test\Install\Tools\Toolbox.tbx", "SignOn")
+        pythonaddins.GPToolDialog(TBXPATH, "SignOn")
+
+        fs = portalLogin.search(q='type:Feature Service',
+                                sort_field = 'title', sort_order = 'asc')
+
+        #Ash 2/17: Creates output.txt that contains names of all services in the organization.
+
+        FILE = open(output, "w")
+        for i in fs: FILE.write(i.get('title') + "\n")
+        FILE.close()
+        
+        print "Check test\\Install\\Output" 
 
 class folderList(object):
     """Implementation for test_addin.button (Button)"""

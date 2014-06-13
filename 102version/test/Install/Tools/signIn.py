@@ -9,22 +9,30 @@
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
 
-import sys
+import sys, os
 import arcpy
-sys.path.append(r"C:\Python27\Lib\site-packages")
-import portalpy
+workDir = os.path.dirname(sys.argv[0])
+portalpyScriptPath = workDir + "\\Tools\\Tools\\portalpy.py"
+sys.path.append(portalpyScriptPath)
+from portalpy import *
+
 
 def main():
-    # Get the parameters for the tool
-    URL = arcpy.GetParameterAsText(0)
-    user = arcpy.GetParameterAsText(1)
-    password = arcpy.GetParameterAsText(2)
-    # Instantiate the portal object
-    portalObject = portalpy.Portal(URL, user, password)
-    #print portalObject
-    import test_addin
-    test_addin.portalLogin = portalObject
-    test_addin.portalID = user
+    try:
+        # Get the parameters for the tool
+        URL = arcpy.GetParameterAsText(0)
+        user = arcpy.GetParameterAsText(1)
+        password = arcpy.GetParameterAsText(2)
+        # Instantiate the portal object
+        portalObject = portalpy.Portal(URL, user, password)
+        #print portalObject
+        import test_addin
+        test_addin.portalLogin = portalObject
+        test_addin.portalID = user
+        uE = test_addin.updateEnabled()
+        uE.go()
+    except:
+        arcpy.AddMessage("LOGIN FAILED, TRY AGAIN!")
     
 
 main()

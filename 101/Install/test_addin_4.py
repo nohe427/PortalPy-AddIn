@@ -1,9 +1,7 @@
 import arcpy
 import pythonaddins
-import sys, os
-workDir = os.path.dirname(sys.argv[0])
-portalpyScriptPath = workDir + "\\Tools\\Tools\\portalpy.py"
-sys.path.append(portalpyScriptPath)
+import sys
+sys.path.append(r"C:\Python27\Lib\site-packages")
 from portalpy import *
 
 global portalLogin
@@ -52,11 +50,3 @@ class portalpyUsers(object):
     def onClick(self):
         for i in portalLogin.users(['username', 'fullName']):
             print i
-
-class deleteUser(object):
-    """Implementation for test_addin.button_3 (Button)"""
-    def __init__(self):
-        self.enabled = True
-        self.checked = False
-    def onClick(self):
-        pythonaddins.GPToolDialog(r"C:\Users\AlexanderN\Documents\GitHub\PortalPy-AddIn\102version\test\Install\Tools\Toolbox.tbx", "deleteUser")

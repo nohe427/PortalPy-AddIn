@@ -9,12 +9,10 @@
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
 
-import sys, os
+import sys
 import arcpy
-workDir = os.path.dirname(sys.argv[0])
-portalpyScriptPath = workDir + "\\Tools\\Tools\\portalpy.py"
-sys.path.append(portalpyScriptPath)
-from portalpy import *
+sys.path.append(r"C:\Python27\Lib\site-packages")
+import portalpy
 import test_addin
 
 def main():

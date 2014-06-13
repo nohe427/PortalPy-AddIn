@@ -1,9 +1,7 @@
 import arcpy
 import pythonaddins
-import sys, os
-workDir = os.path.dirname(sys.argv[0])
-portalpyScriptPath = workDir + "\\Tools\\Tools\\portalpy.py"
-sys.path.append(portalpyScriptPath)
+import sys
+sys.path.append(r"C:\Python27\Lib\site-packages")
 from portalpy import *
 
 global portalLogin

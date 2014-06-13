@@ -1,12 +1,31 @@
-import arcpy, pythonaddins, sys, os
-sys.path.append(r"C:\Python27\Lib\site-packages")
+import arcpy
+import pythonaddins
+import sys, os
+workDir = os.path.dirname(__file__)
+Tbx = workDir + "\\Tools\\Toolbox.tbx"
+portalpyScriptPath = workDir + "\\Tools\\Tools\\portalpy.py"
+sys.path.append(portalpyScriptPath)
 from portalpy import *
 
-output = r"C:\Users\AlexanderN\Documents\GitHub\PortalPy-AddIn\102version\test\Install\Output\output.txt"
-
 global portalLogin
+portalLogin = None
 global portalID
 #Get bad syntac error when declaring global portalLogin = () or portalLogin = portalpy.Portal()
+
+class ButtonClass28(object):
+    """Implementation for test_addin.button_4 (Button)"""
+    def __init__(self):
+        self.enabled = True
+        self.checked = False
+    def onClick(self):
+        global portalLogin
+        if portalLogin is not None:
+            button.enabled = True
+            button_1.enabled = True
+            button_2.enabled = True
+            button_3.enabled = True
+        else:
+            print False
 
 class SignOn(object):
     """Implementation for test_addin.signonbutton (Button)"""
@@ -14,49 +33,46 @@ class SignOn(object):
         self.enabled = True
         self.checked = False
     def onClick(self):
+        workDir = os.path.dirname(__file__)
+        Tbx = workDir + "\\Tools\\Toolbox.tbx"
+        print Tbx
         global portalLogin
         """  While the GPToolDialog runs asynchronously from the tool, it does have the option
             to import the global variable and then  reassign the variable to the
             portal object.  This allows our users to access the portal object in
             other classes that we create from this.
         """
-        pythonaddins.GPToolDialog(r"C:\Users\AlexanderN\Documents\GitHub\PortalPy-AddIn\102version\test\Install\Tools\Toolbox.tbx", "SignOn")
-
-        fs = portalLogin.search(q='type:Feature Service',
-                                sort_field = 'title', sort_order = 'asc')
-
-        #Ash 2/17: Creates output.txt that contains names of all services in the organization.
-
-        FILE = open(output, "w")
-        for i in fs: FILE.write(i.get('title') + "\n")
-        FILE.close()
-        
-        print "Check test\\Install\\Output" 
+        pythonaddins.GPToolDialog(Tbx, "SignOn")
 
 class folderList(object):
     """Implementation for test_addin.button (Button)"""
     def __init__(self):
-        self.enabled = True
+        self.enabled = False
         self.checked = False
     def onClick(self):
         global portalLogin
+        if portalLogin != None:
+            self.enabled = True
+        else:
+            pass
         print "These are the folders you have currently on this Portal username:"
-        for i in portalLogin.folders(portalID):
-            print i['title']
+        for i in portalLogin.get_user(portalID):
+            print i['role']
+
 
 class newFolder(object):
     """Implementation for test_addin.button_1 (Button)"""
     def __init__(self):
-        self.enabled = True
+        self.enabled = False
         self.checked = False
     def onClick(self):
-        pythonaddins.GPToolDialog(r"C:\Users\AlexanderN\Documents\GitHub\PortalPy-AddIn\102version\test\Install\Tools\Toolbox.tbx", "createFolderCU")
+        pythonaddins.GPToolDialog(Tbx, "createFolderCU")
 
 
 class portalpyUsers(object):
     """Implementation for test_addin.button_2 (Button)"""
     def __init__(self):
-        self.enabled = True
+        self.enabled = False
         self.checked = False
     def onClick(self):
         for i in portalLogin.users(['username', 'fullName']):
@@ -65,7 +81,14 @@ class portalpyUsers(object):
 class deleteUser(object):
     """Implementation for test_addin.button_3 (Button)"""
     def __init__(self):
-        self.enabled = True
+        self.enabled = False
         self.checked = False
     def onClick(self):
-        pythonaddins.GPToolDialog(r"C:\Users\AlexanderN\Documents\GitHub\PortalPy-AddIn\102version\test\Install\Tools\Toolbox.tbx", "deleteUser")
+        pythonaddins.GPToolDialog(Tbx, "deleteUser")
+
+class updateEnabled:
+    def go(self):
+        button.enabled = True
+        button_1.enabled = True
+        button_2.enabled = True
+        button_3.enabled = True
